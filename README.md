@@ -5,6 +5,7 @@
 This is a proof of concept of how the [fairseq](https://github.com/facebookresearch/fairseq) python library can be used for `tts`, given that the examples on HuggingFace and the repo are either unclear, or broken.
 
 # Installation
+(This installation should work for python versions `3.6` through `3.10`. version `3.11` is not yet supported. Run `python --version` to view current installation)
 - clone this repository to your local machine and cd into it
 ```bash
 git clone https://github.com/Alex23rodriguez/fairseqAPI.git
