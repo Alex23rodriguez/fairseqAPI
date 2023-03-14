@@ -1,2 +1,5 @@
 /venv
 /fairseq_repo
+__pycache__
+/out
+/data
