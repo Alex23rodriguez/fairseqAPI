@@ -37,6 +37,9 @@ models, cfg, task = load_model_ensemble_and_task(
     [str(filename)], arg_overrides=arg_overrides
 )
 
+# update last used if successful
+Path("./data/last_used").write_text(data)
+
 
 model = models[0]
 TTSHubInterface.update_cfg_with_data_cfg(cfg, task.data_cfg)
