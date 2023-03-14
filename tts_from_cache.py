@@ -1,3 +1,18 @@
+# import os
+import sys
+from argparse import ArgumentParser, FileType
+
+parser = ArgumentParser(
+    prog="Russian Text To Speech",
+    description="given some russian text, generates a .wav file of spoken russian",
+)
+
+parser.add_argument("-o", "--outfile", default="./out/out.wav")
+parser.add_argument("text", nargs="+")
+args = parser.parse_args()
+
+sys.path.append("./fairseq_repo")
+
 import torchaudio as ta
 from fairseq.checkpoint_utils import load_model_ensemble_and_task
 from fairseq.models.text_to_speech.hub_interface import TTSHubInterface
@@ -22,12 +37,4 @@ def tts(text, file):
 
 
 ### convert to audio
-
-text = """
-Окей, мы просто играем в жизнь
-Часто не понимая роль
-Наши сюжеты — это белый лист
-Где мы вместе напишем свой
-"""
-outfile = "../out/mytest3.wav"
-tts(text, outfile)
+tts(" ".join(args.text), args.outfile)
