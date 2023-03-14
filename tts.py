@@ -50,4 +50,7 @@ def tts(text, file):
 
 
 ### convert to audio
+p = Path(args.outfile)
+if not p.parent.exists():
+    p.parent.mkdir()
 tts(" ".join(args.text), args.outfile)
