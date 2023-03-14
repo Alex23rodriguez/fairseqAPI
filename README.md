@@ -16,6 +16,7 @@ git clone --depth 1 https://github.com/pytorch/fairseq fairseq_repo
 ```
 NOTE: this is different from `pip install fairseq`, which installs the CLI tool, _not_ the python module. Check out their repo for more info.
 - install the required modules
+  - it is recommended to create a virtual envirenment before installing requirements: `python -m venv venv && source venv/bin/activate`
 ```bash
 pip install -r requirements.txt
 ```
