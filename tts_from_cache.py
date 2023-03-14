@@ -1,6 +1,11 @@
-# import os
+# append fairseq_repo to path
 import sys
-from argparse import ArgumentParser, FileType
+
+sys.path.append("./fairseq_repo")
+
+# parse arguments before loading model
+
+from argparse import ArgumentParser
 
 parser = ArgumentParser(
     prog="Russian Text To Speech",
@@ -11,12 +16,13 @@ parser.add_argument("-o", "--outfile", default="./out/out.wav")
 parser.add_argument("text", nargs="+")
 args = parser.parse_args()
 
-sys.path.append("./fairseq_repo")
+# import necessary modules
 
 import torchaudio as ta
 from fairseq.checkpoint_utils import load_model_ensemble_and_task
 from fairseq.models.text_to_speech.hub_interface import TTSHubInterface
 
+# load model
 data = "/Users/alex/.cache/fairseq/models--facebook--tts_transformer-ru-cv7_css10/snapshots/9eaa70aaff5aac14f8e17856b3def855ebdbf69c"  # noqa
 filename = data + "/model.pt"
 arg_overrides = {"vocoder": "hifigan", "fp16": False, "data": data}
