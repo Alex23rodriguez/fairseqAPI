@@ -5,10 +5,6 @@ sys.path.append("./fairseq_repo")
 # argparse
 from argparse import ArgumentParser
 
-# import necessary modules
-from pathlib import Path
-from fairseq.checkpoint_utils import load_model_ensemble_and_task_from_hf_hub
-from fairseq.models.text_to_speech.hub_interface import TTSHubInterface
 
 parser = ArgumentParser()
 parser.add_argument(
@@ -19,6 +15,11 @@ parser.add_argument(
     help="huggingface model that will be used to transform from text to speech",
 )
 args = parser.parse_args()
+
+# import necessary modules
+from pathlib import Path
+from fairseq.checkpoint_utils import load_model_ensemble_and_task_from_hf_hub
+from fairseq.models.text_to_speech.hub_interface import TTSHubInterface
 
 models, cfg, task = load_model_ensemble_and_task_from_hf_hub(
     args.model,
@@ -33,7 +34,7 @@ if not p.exists():
 q = p / str(args.model)
 if not q.parent.exists():
     q.parent.mkdir()
+    (p / "last_used").write_text(cfg.model.data)
 
 # add cache location for this model
 q.write_text(cfg.model.data)
-(p / "last_used").write_text(cfg.model.data)
